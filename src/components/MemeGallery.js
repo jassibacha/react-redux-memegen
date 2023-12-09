@@ -12,6 +12,10 @@ const MemeGallery = () => {
         dispatch(removeMeme(id));
     };
 
+    if (memes.length === 0) {
+        return <p>No memes available.</p>;
+    }
+
     return (
         <div className="MemeGallery">
             {memes.map((meme) => (
