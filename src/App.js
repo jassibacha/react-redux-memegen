@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import MemeGallery from './components/MemeGallery';
+import MemeForm from './components/MemeForm';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
     return (
         <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
+            <nav className="navbar navbar-dark bg-dark">
+                <div className="container-fluid">
+                    <span className="navbar-brand mb-0 h1 mx-auto">
+                        MemeGen
+                    </span>
+                </div>
+            </nav>
+            <div className="container my-4">
+                <MemeForm />
+                <MemeGallery />
+            </div>
         </div>
     );
 }

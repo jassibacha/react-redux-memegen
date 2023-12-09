@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addMeme } from '../actions/memeActions';
+import { v4 as uuidv4 } from 'uuid';
 
-function MemeForm({ addMeme }) {
+function MemeForm() {
+    const dispatch = useDispatch();
     const INITIAL_STATE = {
         topText: '',
         bottomText: '',
@@ -13,7 +17,8 @@ function MemeForm({ addMeme }) {
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        addMeme(formData);
+        dispatch(addMeme({ ...formData, id: uuidv4() }));
+        // Dispatch the action
         setFormData(INITIAL_STATE);
     };
 
@@ -28,36 +33,65 @@ function MemeForm({ addMeme }) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="topText">Top Text:</label>
-            <input
-                type="text"
-                id="topText"
-                name="topText"
-                value={formData.topText}
-                onChange={handleChange}
-            />
+        <div className="card">
+            <div className="card-body">
+                <form onSubmit={handleSubmit} className="form">
+                    <div className="mb-3">
+                        <label htmlFor="topText" className="form-label">
+                            
+                        
+                            Top Text:
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="topText"
+                            name="topText"
+                            value={formData.topText}
+                            onChange={handleChange}
+                        />
+                    </div>
 
-            <label htmlFor="bottomText">Bottom Text:</label>
-            <input
-                type="text"
-                id="bottomText"
-                name="bottomText"
-                value={formData.bottomText}
-                onChange={handleChange}
-            />
+                            
+                        
+                    <div className="mb-3">
+                        <label htmlFor="bottomText" className="form-label">
+                            Bottom Text:
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="bottomText"
+                            name="bottomText"
+                            value={formData.bottomText}
+                            onChange={handleChange}
+                        />
+                            
+                        
+                    </div>
 
-            <label htmlFor="imgSrc">Image Src:</label>
-            <input
-                type="text"
-                id="imgSrc"
-                name="imgSrc"
-                value={formData.imgSrc}
-                onChange={handleChange}
-            />
+                    <div className="mb-3">
+                        <label htmlFor="imgSrc" className="form-label">
+                            Image Src:
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="imgSrc"
+                            name="imgSrc"
+                        
+                    
+                            value={formData.imgSrc}
+                            onChange={handleChange}
+                        />
+                    </div>
 
-            <button>Add a new box!</button>
-        </form>
+                    <button type="submit" className="btn btn-primary">
+                        Add a new meme
+                    </button>
+                </form>
+            </div>
+        </div>
     );
 }
 
